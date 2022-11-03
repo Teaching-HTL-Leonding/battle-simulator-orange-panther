@@ -45,9 +45,6 @@ int speed2 = 0;
 int armor1 = 0;
 int armor2 = 0;
 
-int armor_health1 = armor1 + health1;
-int armor_health2 = armor2 + health2;
-
 Console.Write("Player 1 choose your character role! Type 1 for pirate, 2 for stone chewer, 3 for ghost warrior, 4 for outworlder, 5 for monster knight or 6 for dark goblin: ");
 int role1 = int.Parse(Console.ReadLine()!);
 
@@ -61,7 +58,6 @@ switch (role1)
         attack1 = ATTACK_PIRATE;
         speed1 = SPEED_PIRATE;
         armor1 = ARMOR_PIRATE;
-
         break;
 
     case STONE_CHEWER:
@@ -146,16 +142,19 @@ switch (role2)
         break;
 }
 
+int armor_health1 = armor1 + health1;
+int armor_health2 = armor2 + health2;
+
 while (armor_health1 > 0 && armor_health2 > 0)
 {
-    
     armor_health1 -= attack2 * speed2;
     armor_health2 -= attack1 * speed1;
 }
 
-if (health1 > 0) { Console.WriteLine("Player 1 wins!"); }
-else if (health2 > 0) { Console.WriteLine("Player 2 wins!"); }
+if (armor_health1 > 0) { Console.WriteLine("Player 1 wins!"); }
+else if (armor_health2 > 0) { Console.WriteLine("Player 2 wins!"); }
 else { Console.WriteLine("Draw! Nobody wins."); }
+
 
 /*
 if (role1 == PIRATE)
