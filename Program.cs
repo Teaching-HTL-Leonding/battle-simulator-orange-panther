@@ -1,174 +1,236 @@
-﻿Console.OutputEncoding = System.Text.Encoding.Default;
+﻿const int PIRATE = 1;
+const int STONE_CHEWER = 2;
+const int GHOST_WARRIOR = 3;
 
-const int ROCK = 1;
-const int PAPER = 2;
-const int SCISSORS = 3;
-const int LIZARD = 4;
-const int SPOCK = 5;
+const int HEALTH_PIRATE = 20;
+const int HEALTH_STONE_CHEWER = 50;
+const int HEALTH_GHOST_WARRIOR = 20;
 
-const int DRAW = 0;
-const int PLAYER1_WINS = 1;
-const int PLAYER2_WINS = 2;
+const int ATTACK_PIRATE = 3;
+const int ATTACK_STONE_CHEWER = 8;
+const int ATTACK_GHOST_WARRIOR = 2;
 
-Console.Write("Player 1, choose (1) for rock 🪨, (2) for paper 📜, (3) for scissors ✂️, (4) for lizard 🦎 and (5) for spock 🖖: ");
-int player1 = int.Parse(Console.ReadLine()!);
-Console.Clear();
-Console.Write("Player 2, choose (1) for rock 🪨, (2) for paper 📜, (3) for scissors ✂️, (4) for lizard 🦎 and (5) for spock 🖖: ");
-int player2 = int.Parse(Console.ReadLine()!);
-Console.Clear();
+const int SPEED_PIRATE = 3;
+const int SPEED_STONE_CHEWER = 1;
+const int SPEED_GHOST_WARRIOR = 5;
 
-int winner = DRAW;
+int health1 = 0;
+int health2 = 0;
 
-switch (player1)
+int attack1 = 0;
+int attack2 = 0;
+
+int speed1 = 0;
+int speed2 = 0;
+
+Console.Write("Player 1 choose your character role! Type 1 for pirate, 2 for stone chewer or 3 for ghost warrior: ");
+int role1 = int.Parse(Console.ReadLine()!);
+
+Console.Write("Player 2 choose your character role! Type 1 for pirate, 2 for stone chewer or 3 for ghost warrior: ");
+int role2 = int.Parse(Console.ReadLine()!);
+
+switch (role1)
 {
-    case ROCK:
-        switch (player2)
-        {
-            case PAPER:
-            case SPOCK:
-                winner = PLAYER2_WINS;
-                break;
-            case SCISSORS:
-            case LIZARD:
-                winner = PLAYER1_WINS;
-                break;
-            default:
-                winner = DRAW;
-                break;
-        }
+    case PIRATE:
+        health1 = HEALTH_PIRATE;
         break;
 
-    case PAPER:
-        switch (player2)
-        {
-            case ROCK:
-            case SPOCK:
-                winner = PLAYER1_WINS;
-                break;
-            case SCISSORS:
-            case LIZARD:
-                winner = PLAYER2_WINS;
-                break;
-            default:
-                winner = DRAW;
-                break;
-        }
+    case STONE_CHEWER:
+        health1 = HEALTH_STONE_CHEWER;
         break;
 
-    case SCISSORS:
-        switch (player2)
-        {
-            case ROCK:
-            case SPOCK:
-                winner = PLAYER2_WINS;
-                break;
-            case PAPER:
-            case LIZARD:
-                winner = PLAYER1_WINS;
-                break;
-            default:
-                winner = DRAW;
-                break;
-        }
-        break;
-
-    case LIZARD:
-        switch (player2)
-        {
-            case ROCK:
-            case SCISSORS:
-                winner = PLAYER2_WINS;
-                break;
-            case PAPER:
-            case SPOCK:
-                winner = PLAYER1_WINS;
-                break;
-            default:
-                winner = DRAW;
-                break;
-        }
-        break;
-
-    case SPOCK:
-        switch (player2)
-        {
-            case ROCK:
-            case SCISSORS:
-                winner = PLAYER1_WINS;
-                break;
-            case PAPER:
-            case LIZARD:
-                winner = PLAYER2_WINS;
-                break;
-            default:
-                winner = DRAW;
-                break;
-        }
-        break;
-    default:
+    case GHOST_WARRIOR:
+        health1 = HEALTH_GHOST_WARRIOR;
         break;
 }
 
-switch (winner)
+switch (role2)
 {
-    case PLAYER1_WINS:
-        Console.WriteLine("Congratulations Player 1, you won the game 🥳!\n");
+    case PIRATE:
+        health2 = HEALTH_PIRATE;
         break;
 
-    case PLAYER2_WINS:
-        Console.WriteLine("Congratulations Player 2, you won the game 🥳!\n");
+    case STONE_CHEWER:
+        health2 = HEALTH_STONE_CHEWER;
         break;
 
-    case DRAW:
-        Console.WriteLine("No winner repeat the game!\n");
-        break;
-    default:
+    case GHOST_WARRIOR:
+        health2 = HEALTH_GHOST_WARRIOR;
         break;
 }
 
-Console.WriteLine("Press any key to exit: ");
-Console.ReadKey();
-Console.Clear();
+switch (role1)
+{
+    case PIRATE:
+        attack1 = ATTACK_PIRATE;
+        speed1 = SPEED_PIRATE;
+        break;
+    
+    case STONE_CHEWER:
+        attack1 = ATTACK_STONE_CHEWER;
+        speed1 = SPEED_STONE_CHEWER;
+        break;
+    
+    case GHOST_WARRIOR:
+        attack1 = ATTACK_GHOST_WARRIOR;
+        break;
+}
 
+switch (role2)
+{
+    case PIRATE:
+        attack2 = ATTACK_PIRATE;
+        break;
+    
+    case STONE_CHEWER:
+        attack2 = ATTACK_STONE_CHEWER;
+        break;
+    
+    case GHOST_WARRIOR:
+        attack2 = ATTACK_GHOST_WARRIOR;
+        break;
+}
 
-// how to make it with if-statements:
+switch (role1)
+{
+    case PIRATE:
+        break;
+    
+    case STONE_CHEWER:
+        break;
+    
+    case GHOST_WARRIOR:
+        speed1 = SPEED_GHOST_WARRIOR;
+        break;
+}
+
+switch (role2)
+{
+    case PIRATE:
+        speed2 = SPEED_PIRATE;
+        break;
+    
+    case STONE_CHEWER:
+        speed2 = SPEED_STONE_CHEWER;
+        break;
+    
+    case GHOST_WARRIOR:
+        speed2 = SPEED_GHOST_WARRIOR;
+        break;
+}
+
+while (health1 > 0 && health2 > 0)
+{
+    health1 -= attack2 * speed2;
+    health2 -= attack1 * speed1;
+}
+
+if (health1 > 0) { Console.WriteLine("Player 1 wins!"); }
+else if (health2 > 0) { Console.WriteLine("Player 2 wins!"); }
+else { Console.WriteLine("Draw! Nobody wins."); }
+
 /*
-if (player1 == ROCK)
+if (role1 == PIRATE)
 {
-    if (player2 == PAPER) { winner = PLAYER2_WINS; }
-    else if (player2 == SCISSORS) { winner = PLAYER1_WINS; }
-    else if (player2 == LIZARD) { winner = PLAYER1_WINS; }
-    else if (player2 == SPOCK) { winner = PLAYER2_WINS; }
-}
-else if (player1 == PAPER)
-{
-    if (player2 == ROCK) { winner = PLAYER1_WINS; }
-    else if (player2 == SCISSORS) { winner = PLAYER2_WINS; }
-    else if (player2 == LIZARD) { winner = PLAYER2_WINS; }
-    else if (player2 == SPOCK) { winner = PLAYER1_WINS; }
-}
-else if (player1 == SCISSORS)
-{
-    if (player2 == ROCK) { winner = PLAYER2_WINS; }
-    else if (player2 == PAPER) { winner = PLAYER1_WINS; }
-    else if (player2 == LIZARD) { winner = PLAYER1_WINS; }
-    else if (player2 == SPOCK) { winner = PLAYER2_WINS; }
-}
-else if (player1 == LIZARD)
-{
-    if (player2 == ROCK) { winner = PLAYER2_WINS; }
-    else if (player2 == PAPER) { winner = PLAYER1_WINS; }
-    else if (player2 == SCISSORS) { winner = PLAYER2_WINS; }
-    else if (player2 == SPOCK) { winner = PLAYER1_WINS; }
-}
-else if (player1 == SPOCK)
-{
-    if (player2 == ROCK) { winner = PLAYER1_WINS; }
-    else if (player2 == PAPER) { winner = PLAYER2_WINS; }
-    else if (player2 == SCISSORS) { winner = PLAYER1_WINS; }
-    else if (player2 == LIZARD) { winner = PLAYER2_WINS; }
+    health1 = HEALTH_PIRATE;
+    if (role2 == PIRATE)
+    {
+        health2 = HEALTH_PIRATE;
+        while (health1 >= 0 && health2 >= 0)
+        {
+            health1 -= 3 * 3;
+            health2 -= 3 * 3;
+        }
+    }
+
+    else if (role2 == STONE_CHEWER)
+    {
+        health2 = HEALTH_STONE_CHEWER;
+        while (health1 >= 0 && health2 >= 0)
+        {
+            health1 -= 8 * 1;
+            health2 -= 3 * 3;
+        }
+    }
+
+    else if (role2 == GHOST_WARRIOR)
+    {
+        health2 = HEALTH_GHOST_WARRIOR;
+        while (health1 >= 0 && health2 >= 0)
+        {
+            health1 -= 2 * 5;
+            health2 -= 3 * 3;
+        }
+    }
+
 }
 
-if (winner == DRAW) { Console.WriteLine("\nNo winner repeat game!\n"); }
-else { Console.WriteLine("\nPlayer " + winner + " wins! 🥳 \n"); }
+else if (role1 == STONE_CHEWER)
+{
+    health1 = HEALTH_STONE_CHEWER;
+    if (role2 == PIRATE)
+    {
+        health2 = HEALTH_PIRATE;
+        while (health1 >= 0 && health2 >= 0)
+        {
+            health1 -= 8 * 1;
+            health2 -= 3 * 3;
+        }
+    }
+
+    else if (role2 == STONE_CHEWER)
+    {
+        health2 = HEALTH_STONE_CHEWER;
+        while (health1 >= 0 && health2 >= 0)
+        {
+            health1 -= 8 * 1;
+            health2 -= 8 * 1;
+        }
+    }
+
+    else if (role2 == GHOST_WARRIOR)
+    {
+        health2 = HEALTH_GHOST_WARRIOR;
+        while (health1 >= 0 && health2 >= 0)
+        {
+            health1 -= 2 * 5;
+            health2 -= 8 * 1;
+        }
+    }
+}
+
+else if (role1 == GHOST_WARRIOR)
+{
+    health1 = HEALTH_GHOST_WARRIOR;
+    if (role2 == PIRATE)
+    {
+        health2 = HEALTH_PIRATE;
+        while (health1 >= 0 && health2 >= 0)
+        {
+            health1 -= 3 * 3;
+            health2 -= 2 * 5;
+        }
+    }
+
+    else if (role2 == STONE_CHEWER)
+    {
+        health2 = HEALTH_STONE_CHEWER;
+        while (health1 >= 0 && health2 >= 0)
+        {
+            health1 -= 8 * 1;
+            health2 -= 2 * 5;
+        }
+    }
+
+    else if (role2 == GHOST_WARRIOR)
+    {
+        health2 = HEALTH_GHOST_WARRIOR;
+        while (health1 >= 0 && health2 >= 0)
+        {
+            health1 -= 2 * 5;
+            health2 -= 2 * 5;
+        }
+    }
+}
 */
+
